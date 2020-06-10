@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_Vote.1489868408.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="BackEnd/CommonChat" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CommonChat.csproj" t="IncludeRecursive" />
+        <e p="Constants.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="CommonChat.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="BackEnd/OnConnect" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Function.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="OnConnect.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="OnConnect.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="BackEnd/OnDisconnect" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Function.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="OnDisconnect.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="OnDisconnect.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="BackEnd/SendMessage" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Function.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="SendMessage.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="SendMessage.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="FrontEnd" t="IncludeRecursive">
+        <e p="_Imports.razor" t="Include" />
+        <e p="App.razor" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="FrontEnd.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.1" t="Include">
+              <e p="FrontEnd.AssemblyInfo.cs" t="Include" />
+              <e p="Razor" t="Include">
+                <e p="_Imports.razor.g.cs" t="Include" />
+                <e p="App.razor.g.cs" t="Include" />
+                <e p="Pages" t="Include">
+                  <e p="Index.razor.g.cs" t="Include" />
+                  <e p="Questions.razor.g.cs" t="Include" />
+                  <e p="Vote.razor.g.cs" t="Include" />
+                </e>
+                <e p="Shared" t="Include">
+                  <e p="MainLayout.razor.g.cs" t="Include" />
+                  <e p="NavMenu.razor.g.cs" t="Include" />
+                  <e p="SurveyPrompt.razor.g.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="out" t="Include">
+          <e p="FrontEnd" t="Include">
+            <e p="dist" t="Include">
+              <e p="_framework" t="Include">
+                <e p="_bin" t="Include">
+                  <e p="FrontEnd.dll" t="Include" />
+                  <e p="Microsoft.AspNetCore.Authorization.dll" t="Include" />
+                  <e p="Microsoft.AspNetCore.Blazor.dll" t="Include" />
+                  <e p="Microsoft.AspNetCore.Blazor.HttpClient.dll" t="Include" />
+                  <e p="Microsoft.AspNetCore.Components.dll" t="Include" />
+                  <e p="Microsoft.AspNetCore.Components.Forms.dll" t="Include" />
+                  <e p="Microsoft.AspNetCore.Components.Web.dll" t="Include" />
+                  <e p="Microsoft.AspNetCore.Metadata.dll" t="Include" />
+                  <e p="Microsoft.Bcl.AsyncInterfaces.dll" t="Include" />
+                  <e p="Microsoft.Extensions.DependencyInjection.Abstractions.dll" t="Include" />
+                  <e p="Microsoft.Extensions.DependencyInjection.dll" t="Include" />
+                  <e p="Microsoft.Extensions.Logging.Abstractions.dll" t="Include" />
+                  <e p="Microsoft.Extensions.Options.dll" t="Include" />
+                  <e p="Microsoft.Extensions.Primitives.dll" t="Include" />
+                  <e p="Microsoft.JSInterop.dll" t="Include" />
+                  <e p="Mono.WebAssembly.Interop.dll" t="Include" />
+                  <e p="mscorlib.dll" t="Include" />
+                  <e p="System.ComponentModel.DataAnnotations.dll" t="Include" />
+                  <e p="System.Core.dll" t="Include" />
+                  <e p="System.dll" t="Include" />
+                  <e p="System.Net.Http.dll" t="Include" />
+                  <e p="System.Runtime.CompilerServices.Unsafe.dll" t="Include" />
+                  <e p="System.Text.Encodings.Web.dll" t="Include" />
+                  <e p="System.Text.Json.dll" t="Include" />
+                  <e p="WebAssembly.Bindings.dll" t="Include" />
+                  <e p="WebAssembly.Net.Http.dll" t="Include" />
+                </e>
+                <e p="blazor.boot.json" t="Include" />
+                <e p="blazor.webassembly.js" t="Include" />
+                <e p="wasm" t="Include">
+                  <e p="mono.js" t="Include" />
+                  <e p="mono.wasm" t="Include" />
+                </e>
+              </e>
+              <e p="css" t="Include">
+                <e p="bootstrap" t="Include">
+                  <e p="bootstrap.min.css" t="Include" />
+                  <e p="bootstrap.min.css.map" t="Include" />
+                </e>
+                <e p="open-iconic" t="Include">
+                  <e p="font" t="Include">
+                    <e p="css" t="Include">
+                      <e p="open-iconic-bootstrap.min.css" t="Include" />
+                    </e>
+                    <e p="fonts" t="Include">
+                      <e p="open-iconic.eot" t="Include" />
+                      <e p="open-iconic.otf" t="Include" />
+                      <e p="open-iconic.svg" t="Include" />
+                      <e p="open-iconic.ttf" t="Include" />
+                      <e p="open-iconic.woff" t="Include" />
+                    </e>
+                  </e>
+                  <e p="FONT-LICENSE" t="Include" />
+                  <e p="ICON-LICENSE" t="Include" />
+                  <e p="README.md" t="Include" />
+                </e>
+                <e p="site.css" t="Include" />
+              </e>
+              <e p="index.html" t="Include" />
+              <e p="sample-data" t="Include">
+                <e p="weather.json" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Microsoft.AspNetCore.Authorization.dll" t="Include" />
+          <e p="Microsoft.AspNetCore.Blazor.dll" t="Include" />
+          <e p="Microsoft.AspNetCore.Blazor.HttpClient.dll" t="Include" />
+          <e p="Microsoft.AspNetCore.Components.dll" t="Include" />
+          <e p="Microsoft.AspNetCore.Components.Forms.dll" t="Include" />
+          <e p="Microsoft.AspNetCore.Components.Web.dll" t="Include" />
+          <e p="Microsoft.AspNetCore.Metadata.dll" t="Include" />
+          <e p="Microsoft.Bcl.AsyncInterfaces.dll" t="Include" />
+          <e p="Microsoft.Extensions.DependencyInjection.Abstractions.dll" t="Include" />
+          <e p="Microsoft.Extensions.DependencyInjection.dll" t="Include" />
+          <e p="Microsoft.Extensions.Logging.Abstractions.dll" t="Include" />
+          <e p="Microsoft.Extensions.Options.dll" t="Include" />
+          <e p="Microsoft.Extensions.Primitives.dll" t="Include" />
+          <e p="Microsoft.JSInterop.dll" t="Include" />
+          <e p="Mono.WebAssembly.Interop.dll" t="Include" />
+          <e p="System.Buffers.dll" t="Include" />
+          <e p="System.ComponentModel.Annotations.dll" t="Include" />
+          <e p="System.Memory.dll" t="Include" />
+          <e p="System.Numerics.Vectors.dll" t="Include" />
+          <e p="System.Runtime.CompilerServices.Unsafe.dll" t="Include" />
+          <e p="System.Text.Encodings.Web.dll" t="Include" />
+          <e p="System.Text.Json.dll" t="Include" />
+          <e p="System.Threading.Tasks.Extensions.dll" t="Include" />
+          <e p="web.config" t="Include" />
+        </e>
+        <e p="Pages" t="Include">
+          <e p="Index.razor" t="Include" />
+          <e p="Questions.razor" t="Include" />
+          <e p="Vote.razor" t="Include" />
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Shared" t="Include">
+          <e p="MainLayout.razor" t="Include" />
+          <e p="NavMenu.razor" t="Include" />
+          <e p="SurveyPrompt.razor" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="wwwroot" t="Include">
+          <e p="css" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p="bootstrap.min.css" t="Include" />
+              <e p="bootstrap.min.css.map" t="Include" />
+            </e>
+            <e p="open-iconic" t="Include">
+              <e p="font" t="Include">
+                <e p="css" t="Include">
+                  <e p="open-iconic-bootstrap.min.css" t="Include" />
+                </e>
+                <e p="fonts" t="Include">
+                  <e p="open-iconic.eot" t="Include" />
+                  <e p="open-iconic.otf" t="Include" />
+                  <e p="open-iconic.svg" t="Include" />
+                  <e p="open-iconic.ttf" t="Include" />
+                  <e p="open-iconic.woff" t="Include" />
+                </e>
+              </e>
+              <e p="FONT-LICENSE" t="Include" />
+              <e p="ICON-LICENSE" t="Include" />
+              <e p="README.md" t="Include" />
+            </e>
+            <e p="site.css" t="Include" />
+          </e>
+          <e p="images" t="Include">
+            <e p="placeholder.jpg" t="Include" />
+          </e>
+          <e p="index.html" t="Include" />
+          <e p="sample-data" t="Include">
+            <e p="question.json" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Infrastructure/src/Infrastructure" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="buildfunctions.ps1" t="Include" />
+        <e p="GlobalSuppressions.cs" t="Include" />
+        <e p="Infrastructure.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="Infrastructure.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="VotingStack.cs" t="Include" />
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Vote.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

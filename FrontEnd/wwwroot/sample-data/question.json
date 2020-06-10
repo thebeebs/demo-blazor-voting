@@ -1,0 +1,22 @@
+﻿[
+  {
+    "id": 0,
+    "title": "Tabs or Spaces?",
+    "answer1": "Tabs",
+    "answer2": "Spaces",
+    "answer1picture": "/images/placeholder.jpg",
+    "answer2picture": "/images/placeholder.jpg",
+    "answer1count": 0,
+    "answer2count": 0
+  },
+  {
+    "id": 1,
+    "title": "Coffee or Beer?",
+    "answer1": "Coffee",
+    "answer2": "Beer",
+    "answer1picture": "/images/placeholder.jpg",
+    "answer2picture": "/images/placeholder.jpg",
+    "answer1count": 0,
+    "answer2count": 0
+  }
+]

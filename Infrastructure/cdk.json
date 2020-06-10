@@ -1,0 +1,7 @@
+{
+  "app": "dotnet run -p src/Infrastructure/Infrastructure.csproj",
+  "context": {
+	"SubscriberEmail": "",
+	"LanguageCode": ""
+  }
+}

@@ -1,0 +1,128 @@
+﻿@page "/vote"
+@inject HttpClient Http
+@inject IJSRuntime JSRuntime;
+@using System.Net.WebSockets;
+@using System.Threading;
+@using System.Threading.Tasks;
+@using System.Text.Json;
+<h1>Vote</h1>
+
+@if (connected == true)
+{
+    <p><em>Connected to WebSocket</em></p>
+}
+
+@if (questions == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Answer One</th>
+                <th>Answer Two</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var i = 0;}  
+            @foreach (var question in questions)
+            {
+            i++;
+            if (i == currentCount) {
+            <tr>
+                <td>@question.Title</td>
+                <td><button class="btn btn-primary" @onclick="VoteAnswer1">@question.Answer1 </button> @question.Answer1Count</td>
+                <td><button class="btn btn-primary" @onclick="VoteAnswer2">@question.Answer2 </button> @question.Answer2Count</td>
+            </tr>
+            }
+            }
+        </tbody>
+    </table>
+<button class="btn btn-primary" @onclick="PreviousQuestion">Previous</button>
+<button class="btn btn-primary" @onclick="NextQuestion">Next</button>
+
+}
+
+@code {
+    private Question[] questions;
+    private int currentCount = 1;
+    private bool connected = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var r = await JSRuntime.InvokeAsync<string>(
+            "blazorHelpers.connect",
+            "wss://calktsr73i.execute-api.eu-west-2.amazonaws.com/Prod",
+            DotNetObjectReference.Create(this)); 
+
+        if (r == "true"){
+            connected = true;
+        }
+        
+        questions = await Http.GetJsonAsync<Question[]>("sample-data/question.json");
+    }
+
+        
+    public class Question
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Answer1 { get; set; }
+        public string Answer2 { get; set; }
+        public string Answer1Picture { get; set; }
+        public string Answer2Picture { get; set; }
+        public int Answer1Count { get; set; }
+        public int Answer2Count { get; set; }     
+    }
+
+    public class VoteResponse
+    {
+        public int QuestionId { get; set; }
+        public int Answer1 { get; set; }
+        public int Answer2 { get; set; }
+
+    }
+
+    private void NextQuestion()
+    { 
+        if (currentCount < questions.Length ){
+            currentCount++;
+        }
+    }
+
+    private void PreviousQuestion()
+    {
+        if (currentCount > 1 ){
+            currentCount--;
+        }
+    }
+
+    private async void VoteAnswer1()
+    {
+        var r = await JSRuntime.InvokeAsync<string>(
+            "blazorHelpers.vote",
+            $"{currentCount-1}",
+            "1");      
+    }
+
+    private async void VoteAnswer2()
+    {
+        var r = await JSRuntime.InvokeAsync<string>(
+            "blazorHelpers.vote",
+            $"{currentCount-1}",
+            "2");   
+    }
+
+    [JSInvokable]
+    public async void OnVote(VoteResponse question){
+
+        var q = questions[question.QuestionId];
+        q.Answer1Count += question.Answer1;
+        q.Answer2Count += question.Answer2;
+
+        StateHasChanged();
+    }
+}
