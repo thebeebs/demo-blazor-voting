@@ -10,7 +10,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnDisconnect", "BackEnd\OnD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendMessage", "BackEnd\SendMessage\SendMessage.csproj", "{12527000-6433-4969-BD7A-7EE8D6255667}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\src\Infrastructure\Infrastructure.csproj", "{862835D6-1C99-4567-B59F-86686D2DF84D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CDK", "CDK\src\CDK\CDK.csproj", "{862835D6-1C99-4567-B59F-86686D2DF84D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

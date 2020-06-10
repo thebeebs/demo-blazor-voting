@@ -53,6 +53,22 @@
         </e>
         <e p="SendMessage.csproj" t="IncludeRecursive" />
       </e>
+      <e p="CDK/src/CDK" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="buildfunctions.ps1" t="Include" />
+        <e p="CDK.csproj" t="IncludeRecursive" />
+        <e p="GlobalSuppressions.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.0" t="Include">
+              <e p="CDK.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="README.md" t="Include" />
+        <e p="VotingStack.cs" t="Include" />
+      </e>
       <e p="FrontEnd" t="IncludeRecursive">
         <e p="_Imports.razor" t="Include" />
         <e p="App.razor" t="Include" />
@@ -218,21 +234,6 @@
             <e p="question.json" t="Include" />
           </e>
         </e>
-      </e>
-      <e p="Infrastructure/src/Infrastructure" t="IncludeRecursive">
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="buildfunctions.ps1" t="Include" />
-        <e p="GlobalSuppressions.cs" t="Include" />
-        <e p="Infrastructure.csproj" t="IncludeRecursive" />
-        <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
-            <e p="netcoreapp3.0" t="Include">
-              <e p="Infrastructure.AssemblyInfo.cs" t="Include" />
-            </e>
-          </e>
-        </e>
-        <e p="Program.cs" t="Include" />
-        <e p="VotingStack.cs" t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="Vote.sln" t="IncludeFlat" />
