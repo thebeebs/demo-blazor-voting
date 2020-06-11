@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontEnd", "FrontEnd\FrontEnd.csproj", "{7976D2DA-1AFD-4259-8F6E-4758F845E8E2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonChat", "BackEnd\CommonChat\CommonChat.csproj", "{DCF9995B-9A25-4AF1-856B-CA978F8D7629}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnConnect", "BackEnd\OnConnect\OnConnect.csproj", "{AE9C25F5-2AAF-4DDE-BE0F-23FFE0623112}"
@@ -24,10 +22,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7976D2DA-1AFD-4259-8F6E-4758F845E8E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7976D2DA-1AFD-4259-8F6E-4758F845E8E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7976D2DA-1AFD-4259-8F6E-4758F845E8E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7976D2DA-1AFD-4259-8F6E-4758F845E8E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DCF9995B-9A25-4AF1-856B-CA978F8D7629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DCF9995B-9A25-4AF1-856B-CA978F8D7629}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCF9995B-9A25-4AF1-856B-CA978F8D7629}.Release|Any CPU.ActiveCfg = Release|Any CPU
