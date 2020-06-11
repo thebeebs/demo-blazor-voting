@@ -1,0 +1,126 @@
+﻿@page "/vote"
+@inject HttpClient Http
+@using System.Net.WebSockets
+@using System.Text
+@using System.Threading
+@using Newtonsoft.Json.Linq
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@implements IDisposable
+<h1>Vote</h1>
+@if (connected == true)
+{
+    <p><em>Connected to WebSocket</em></p>
+}
+
+@if (questions == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (voted)
+{
+    <p><em>Thank you for your vote</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Answer One</th>
+                <th>Answer Two</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ var i = 0;}  
+            @foreach (var question in questions)
+            {
+            i++;
+            if (i == currentCount) {
+            <tr>
+                <td>@question.Title</td>
+                <td><button class="btn btn-primary" @onclick="VoteAnswer1">@question.Answer1 </button></td>
+                <td><button class="btn btn-primary" @onclick="VoteAnswer2">@question.Answer2 </button></td>
+            </tr>
+            }
+            }
+        </tbody>
+    </table>
+
+}
+
+@code {
+    CancellationTokenSource disposalTokenSource = new CancellationTokenSource();
+    ClientWebSocket webSocket = new ClientWebSocket();
+    private Question[] questions;
+    private int currentCount = 1;
+    private bool connected = false;
+    private bool voted = false;
+
+    private void QuestionChanged(int questionChanged)
+    {
+        voted = false;
+        currentCount = questionChanged;
+        StateHasChanged();
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await webSocket.ConnectAsync(new Uri(Configuration["websocketurl"]), disposalTokenSource.Token);
+        _ = ReceiveLoop();
+        questions = await Http.GetFromJsonAsync<Question[]>("sample-data/question.json");
+    }
+
+    private async void VoteAnswer1()
+    {
+        voted = true;
+        var payload = $"{{ message: \"vote\", questionid: \"{currentCount}\", answer: \"1\" }}";
+        var dataToSend = new ArraySegment<byte>(Encoding.UTF8.GetBytes(payload));
+        await webSocket.SendAsync(dataToSend, WebSocketMessageType.Text, true, disposalTokenSource.Token);
+    }
+
+    private async void VoteAnswer2()
+    {
+        voted = true;
+        var payload = $"{{ message: \"vote\", questionid: \"{currentCount}\", answer: \"2\" }}";
+        var dataToSend = new ArraySegment<byte>(Encoding.UTF8.GetBytes(payload));
+        await webSocket.SendAsync(dataToSend, WebSocketMessageType.Text, true, disposalTokenSource.Token);
+    }
+    
+    async Task ReceiveLoop()
+    {
+        connected = true;
+        var buffer = new ArraySegment<byte>(new byte[1024]);
+        while (!disposalTokenSource.IsCancellationRequested)
+        {
+            var received = await webSocket.ReceiveAsync(buffer, disposalTokenSource.Token);
+            var receivedAsText = Encoding.UTF8.GetString(buffer.Array, 0, received.Count);
+
+            try
+            {
+                JObject json = JObject.Parse(receivedAsText);
+                switch (json["message"].Value<string>())
+                {
+                    case "changequestion":
+                        QuestionChanged(json["data"].Value<int>());
+                        break;
+                    case "other":
+                        Console.WriteLine("Other");
+                        break;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Failed to parse JSON");
+            }
+
+            StateHasChanged();
+        }
+    }
+    
+    public void Dispose()
+    {
+        disposalTokenSource.Cancel();
+        _ = webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Bye", CancellationToken.None);
+    }
+
+}

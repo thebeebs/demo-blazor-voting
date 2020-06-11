@@ -1,0 +1,57 @@
+﻿@page "/echo"
+@using System.Net.WebSockets
+@using System.Text
+@using System.Threading
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@implements IDisposable
+
+<h1>Echo test</h1>
+<h3>State: @webSocket.State</h3>
+<p>Message: @Configuration["websocketechourl"]</p>
+@if (webSocket.State == WebSocketState.Open)
+{
+    <form @onsubmit="@SendMessageAsync">
+        Message: <input @bind="@message" />
+        <button type="submit">Send</button>
+    </form>
+
+    <pre>@log</pre>
+}
+
+@code {
+    CancellationTokenSource disposalTokenSource = new CancellationTokenSource();
+    ClientWebSocket webSocket = new ClientWebSocket();
+    string log = "";
+    string websocketsurl = "";
+    string message = "Yo";
+    protected override async Task OnInitializedAsync()
+    {
+        await webSocket.ConnectAsync(new Uri(@Configuration["websocketechourl"]), disposalTokenSource.Token);
+        _ = ReceiveLoop();
+    }
+
+    async Task SendMessageAsync()
+    {
+        log += $"Sending: {message}\n";
+        var dataToSend = new ArraySegment<byte>(Encoding.UTF8.GetBytes(message));
+        await webSocket.SendAsync(dataToSend, WebSocketMessageType.Text, true, disposalTokenSource.Token);
+    }
+
+    async Task ReceiveLoop()
+    {
+        var buffer = new ArraySegment<byte>(new byte[1024]);
+        while (!disposalTokenSource.IsCancellationRequested)
+        {
+            var received = await webSocket.ReceiveAsync(buffer, disposalTokenSource.Token);
+            var receivedAsText = Encoding.UTF8.GetString(buffer.Array, 0, received.Count);
+            log += $"Received: {receivedAsText}\n";
+            StateHasChanged();
+        }
+    }
+
+    public void Dispose()
+    {
+        disposalTokenSource.Cancel();
+        _ = webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Bye", CancellationToken.None);
+    }
+}

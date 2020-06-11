@@ -4,17 +4,9 @@
 @using System.Net.WebSockets
 @using System.Text
 @using System.Threading
+@using Newtonsoft.Json.Linq
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
 @implements IDisposable
-
-@if (webSocket.State == WebSocketState.Open)
-{
-    <form @onsubmit="@SendMessageAsync">
-        Message: <input @bind="@message" />
-        <button type="submit">Send</button>
-    </form>
-
-    <pre>@log</pre>
-}
 
 <h1>Questions</h1>
 
@@ -58,7 +50,6 @@ else
     </table>
 <button class="btn btn-primary" @onclick="PreviousQuestion">Previous</button>
 <button class="btn btn-primary" @onclick="NextQuestion">Next</button>
-    <pre>@log</pre>
 }
 
 @code {
@@ -68,50 +59,29 @@ else
     private Question[] questions;
     private int currentCount = 1;
     private bool connected = false;
-    string message = "Hello, websocket!";
-    string log = "";
     
-    async Task SendMessageAsync()
-    {
-        log += $"Sending: {message}\n";
-        var dataToSend = new ArraySegment<byte>(Encoding.UTF8.GetBytes(message));
-        await webSocket.SendAsync(dataToSend, WebSocketMessageType.Text, true, disposalTokenSource.Token);
-    }
-
     protected override async Task OnInitializedAsync()
     {
-        
-        await webSocket.ConnectAsync(new Uri("wss://1dw4ah8x85.execute-api.eu-west-2.amazonaws.com/Prod"), disposalTokenSource.Token);
+        await webSocket.ConnectAsync(new Uri(Configuration["websocketurl"]), disposalTokenSource.Token);
         _ = ReceiveLoop();
         
-        questions = await Http.GetJsonAsync<Question[]>("sample-data/question.json");
+        questions = await Http.GetFromJsonAsync<Question[]>("sample-data/question.json");
     }
 
-    public class Question
+    async Task ChangeQuestionAsync(int currentQuestion)
     {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Answer1 { get; set; }
-        public string Answer2 { get; set; }
-        public string Answer1Picture { get; set; }
-        public string Answer2Picture { get; set; }
-        public int Answer1Count { get; set; }
-        public int Answer2Count { get; set; }     
+        var payload = $"{{ message: \"slide\", data: \"{currentCount}\" }}";
+        var dataToSend = new ArraySegment<byte>(Encoding.UTF8.GetBytes(payload));
+        await webSocket.SendAsync(dataToSend, WebSocketMessageType.Text, true, disposalTokenSource.Token);
     }
-
-    public class VoteResponse
-    {
-        public int QuestionId { get; set; }
-        public int Answer1 { get; set; }
-        public int Answer2 { get; set; }
-
-    }
-
+    
     private void NextQuestion()
-    { 
+    {
         if (currentCount < questions.Length ){
             currentCount++;
         }
+
+        ChangeQuestionAsync(currentCount);
     }
 
     private void PreviousQuestion()
@@ -119,29 +89,38 @@ else
         if (currentCount > 1 ){
             currentCount--;
         }
+        ChangeQuestionAsync(currentCount);
     }
-
-    [JSInvokable]
-    public async void OnVote(VoteResponse question){
-
-        var q = questions[question.QuestionId];
-        q.Answer1Count += question.Answer1;
-        q.Answer2Count += question.Answer2;
-
-        StateHasChanged();
-    }
+    
     
     async Task ReceiveLoop()
     {
+        connected = true;
         var buffer = new ArraySegment<byte>(new byte[1024]);
         while (!disposalTokenSource.IsCancellationRequested)
         {
-    // Note that the received block might only be part of a larger message. If this applies in your scenario,
-    // check the received.EndOfMessage and consider buffering the blocks until that property is true.
-    // Or use a higher-level library such as SignalR.
             var received = await webSocket.ReceiveAsync(buffer, disposalTokenSource.Token);
             var receivedAsText = Encoding.UTF8.GetString(buffer.Array, 0, received.Count);
-            log += $"Received: {receivedAsText}\n";
+
+            try
+            {
+                JObject json = JObject.Parse(receivedAsText);
+                switch (json["message"].Value<string>())
+                {
+                    case "vote":
+                        var qid = json["questionid"].Value<int>();
+                        var value = json["questionid"].Value<int>();
+                        break;
+                    case "other":
+                        Console.WriteLine("Other");
+                        break;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Failed to parse JSON");
+            }
+
             StateHasChanged();
         }
     }
@@ -151,8 +130,5 @@ else
         disposalTokenSource.Cancel();
         _ = webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Bye", CancellationToken.None);
     }
-
-
-
 
 }

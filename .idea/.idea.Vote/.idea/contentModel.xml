@@ -77,6 +77,87 @@
         </e>
         <e p="Vote.csproj" t="IncludeRecursive" />
       </e>
+      <e p="BlazorFrontEnd" t="IncludeRecursive">
+        <e p="_Imports.razor" t="Include" />
+        <e p="App.razor" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="BlazorFrontEnd.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.1" t="Include">
+              <e p="BlazorFrontEnd.AssemblyInfo.cs" t="Include" />
+              <e p="Razor" t="Include">
+                <e p="_Imports.razor.g.cs" t="Include" />
+                <e p="App.razor.g.cs" t="Include" />
+                <e p="Pages" t="Include">
+                  <e p="Counter.razor.g.cs" t="Include" />
+                  <e p="Echo.razor.g.cs" t="Include" />
+                  <e p="FetchData.razor.g.cs" t="Include" />
+                  <e p="Index.razor.g.cs" t="Include" />
+                  <e p="Questions.razor.g.cs" t="Include" />
+                  <e p="Vote.razor.g.cs" t="Include" />
+                </e>
+                <e p="Shared" t="Include">
+                  <e p="MainLayout.razor.g.cs" t="Include" />
+                  <e p="NavMenu.razor.g.cs" t="Include" />
+                  <e p="SurveyPrompt.razor.g.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="Pages" t="Include">
+          <e p="Counter.razor" t="Include" />
+          <e p="Echo.razor" t="Include" />
+          <e p="FetchData.razor" t="Include" />
+          <e p="Index.razor" t="Include" />
+          <e p="Questions.razor" t="Include" />
+          <e p="Vote.razor" t="Include" />
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Questions.cs" t="Include" />
+        <e p="Shared" t="Include">
+          <e p="MainLayout.razor" t="Include" />
+          <e p="NavMenu.razor" t="Include" />
+          <e p="SurveyPrompt.razor" t="Include" />
+        </e>
+        <e p="wwwroot" t="Include">
+          <e p="appsettings.json" t="Include" />
+          <e p="css" t="Include">
+            <e p="app.css" t="Include" />
+            <e p="bootstrap" t="Include">
+              <e p="bootstrap.min.css" t="Include" />
+              <e p="bootstrap.min.css.map" t="Include" />
+            </e>
+            <e p="open-iconic" t="Include">
+              <e p="font" t="Include">
+                <e p="css" t="Include">
+                  <e p="open-iconic-bootstrap.min.css" t="Include" />
+                </e>
+                <e p="fonts" t="Include">
+                  <e p="open-iconic.eot" t="Include" />
+                  <e p="open-iconic.otf" t="Include" />
+                  <e p="open-iconic.svg" t="Include" />
+                  <e p="open-iconic.ttf" t="Include" />
+                  <e p="open-iconic.woff" t="Include" />
+                </e>
+              </e>
+              <e p="FONT-LICENSE" t="Include" />
+              <e p="ICON-LICENSE" t="Include" />
+              <e p="README.md" t="Include" />
+            </e>
+          </e>
+          <e p="favicon.ico" t="Include" />
+          <e p="index.html" t="Include" />
+          <e p="sample-data" t="Include">
+            <e p="question.json" t="Include" />
+            <e p="weather.json" t="Include" />
+          </e>
+        </e>
+      </e>
       <e p="CDK/src/CDK" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="buildfunctions.ps1" t="Include" />
@@ -102,20 +183,6 @@
           <e p="Debug" t="Include">
             <e p="netstandard2.1" t="Include">
               <e p="FrontEnd.AssemblyInfo.cs" t="Include" />
-              <e p="Razor" t="Include">
-                <e p="_Imports.razor.g.cs" t="Include" />
-                <e p="App.razor.g.cs" t="Include" />
-                <e p="Pages" t="Include">
-                  <e p="Index.razor.g.cs" t="Include" />
-                  <e p="Questions.razor.g.cs" t="Include" />
-                  <e p="Vote.razor.g.cs" t="Include" />
-                </e>
-                <e p="Shared" t="Include">
-                  <e p="MainLayout.razor.g.cs" t="Include" />
-                  <e p="NavMenu.razor.g.cs" t="Include" />
-                  <e p="SurveyPrompt.razor.g.cs" t="Include" />
-                </e>
-              </e>
             </e>
           </e>
         </e>

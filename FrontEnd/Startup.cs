@@ -1,4 +1,6 @@
+using System.Reflection;
 using Microsoft.AspNetCore.Components.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FrontEnd

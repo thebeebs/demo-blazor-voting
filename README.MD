@@ -1,4 +1,4 @@
-The Blazor project can be found inside of *FrontEnd/*
+The Blazor project can be found inside of *BlazorFrontEnd/*
 
 To Build it run:
 
