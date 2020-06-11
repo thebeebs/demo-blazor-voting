@@ -53,6 +53,30 @@
         </e>
         <e p="SendMessage.csproj" t="IncludeRecursive" />
       </e>
+      <e p="BackEnd/Slide" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Function.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="Slide.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Slide.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="BackEnd/Vote" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Function.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="Vote.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Vote.csproj" t="IncludeRecursive" />
+      </e>
       <e p="CDK/src/CDK" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
         <e p="buildfunctions.ps1" t="Include" />

@@ -12,6 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendMessage", "BackEnd\Send
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CDK", "CDK\src\CDK\CDK.csproj", "{862835D6-1C99-4567-B59F-86686D2DF84D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slide", "BackEnd\Slide\Slide.csproj", "{D6A89ED3-0262-4AE9-8039-A6C3BA410A7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vote", "BackEnd\Vote\Vote.csproj", "{20CC6584-BC82-4EB3-A532-C8B9F06B5B2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +46,13 @@ Global
 		{862835D6-1C99-4567-B59F-86686D2DF84D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{862835D6-1C99-4567-B59F-86686D2DF84D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{862835D6-1C99-4567-B59F-86686D2DF84D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6A89ED3-0262-4AE9-8039-A6C3BA410A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6A89ED3-0262-4AE9-8039-A6C3BA410A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6A89ED3-0262-4AE9-8039-A6C3BA410A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A89ED3-0262-4AE9-8039-A6C3BA410A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20CC6584-BC82-4EB3-A532-C8B9F06B5B2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20CC6584-BC82-4EB3-A532-C8B9F06B5B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20CC6584-BC82-4EB3-A532-C8B9F06B5B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20CC6584-BC82-4EB3-A532-C8B9F06B5B2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
