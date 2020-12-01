@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Amazon.CDK;
 using Amazon.CDK.AWS.APIGateway;
@@ -6,6 +7,7 @@ using Amazon.CDK.AWS.Lambda;
 using Amazon.CDK.AWS.Lambda.EventSources;
 using Amazon.CDK.AWS.APIGatewayv2;
 using Amazon.CDK.AWS.DynamoDB;
+using Attribute = Amazon.CDK.AWS.DynamoDB.Attribute;
 using CfnDeploymentProps = Amazon.CDK.AWS.APIGatewayv2.CfnDeploymentProps;
 using CfnStageProps = Amazon.CDK.AWS.APIGatewayv2.CfnStageProps;
 
@@ -13,12 +15,9 @@ namespace Infrastructure
 {
     public class VotingStack : Stack
     {
-        private string CREDENTAILS_ARN;
-        private string LAMBDA_URI;
 
         internal VotingStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
         {
-
             var table = new Table(this, "Connections", new TableProps
             {
                 PartitionKey = new Attribute
@@ -26,12 +25,11 @@ namespace Infrastructure
                     Name = "connectionId",
                     Type = AttributeType.STRING
                 },
-                ServerSideEncryption = true,
                 TableName = "Connections"
             });
             
             
-            var onconnectFunction = new Function(this, "onconnectfunction", new FunctionProps
+            var connectFunc = new Function(this, "onconnectfunction", new FunctionProps
             {
                 Tracing = Tracing.ACTIVE,
                 Runtime = Runtime.DOTNET_CORE_2_1,
@@ -45,8 +43,8 @@ namespace Infrastructure
                 Code = Code.FromAsset("./assets/OnConnect.zip"),
                 Handler = "OnConnect::OnConnect.Function::FunctionHandler"
             });
-            
-            var onDisconnectFunction = new Function(this, "ondisconnectfunction", new FunctionProps
+
+            var disconnectFunc = new Function(this, "ondisconnectfunction", new FunctionProps
             {
                 Tracing = Tracing.ACTIVE,
                 Runtime = Runtime.DOTNET_CORE_2_1,
@@ -61,7 +59,7 @@ namespace Infrastructure
                 Handler = "OnDisconnect::OnDisconnect.Function::FunctionHandler"
             });
             
-            var sendMessageFunction = new Function(this, "sendmessagefunction", new FunctionProps
+            var messageFunc = new Function(this, "sendmessagefunction", new FunctionProps
             {
                 Tracing = Tracing.ACTIVE,
                 Runtime = Runtime.DOTNET_CORE_2_1,
@@ -77,9 +75,31 @@ namespace Infrastructure
             });
 
 
-            table.GrantReadWriteData(onconnectFunction);
-            table.GrantReadWriteData(onDisconnectFunction);
-            table.GrantReadWriteData(sendMessageFunction);
+            table.GrantReadWriteData(connectFunc);
+            table.GrantReadWriteData(disconnectFunc);
+            table.GrantReadWriteData(messageFunc);
+            
+            // initialise api
+            var name = "voting-api";
+            var api = new CfnApi(this, name, new CfnApiProps {
+                ProtocolType= "WEBSOCKET",
+                RouteSelectionExpression=  "$request.body.action",
+            });
+            
+            var policy = new PolicyStatement( new PolicyStatementProps {
+                Effect = Effect.ALLOW,
+                Resources = new[]{ 
+                    connectFunc.FunctionArn, 
+                    disconnectFunc.FunctionArn, 
+                    messageFunc.FunctionArn
+                }
+            });
+            
+            var role = new Role(this, "chatrole-iam-role", new RoleProps {
+                AssumedBy = new ServicePrincipal("apigateway.amazonaws.com")
+            });
+            
+            role.AddToPolicy(policy);
 
 //            var api = new Amazon.CDK.AWS.APIGatewayv2.CfnApi(this, "api", new CfnApiProps
 //            {
