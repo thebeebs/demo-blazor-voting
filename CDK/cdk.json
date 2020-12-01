@@ -1,5 +1,5 @@
 {
-  "app": "dotnet run -p src/Infrastructure/Infrastructure.csproj",
+  "app": "dotnet run -p src/CDK/CDK.csproj",
   "context": {
 	"SubscriberEmail": "",
 	"LanguageCode": ""
